@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kopi Setia</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,700;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- father icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <!-- my style -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="shortcut icon"
+      href="images/logo/logo-warkop.png"
+      type="image/x-icon"
+    />
+    <!-- Alpine JS -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+   
+  </head>
+  <body>
+    <!-- Navbar star x-data agar apline bisa di baja di baca di navbar -->
+    <nav class="navbar" x-data>
+      <div class="navbar-logo">
+        <!-- <img src="images/logo/3.png" alt="" /> -->
+        <a href="index.html"><span>Kopi Setia</span></a>
+      </div>
+
+      <div class="navbar-nav">
+        <a href="index.html">Home</a>
+        <a href="index.html#about">Tentang Kami</a>
+        <a href="index.html#menu">Menu Kopi</a>
+        <a href="index.html#contact">Kontak</a>
+      </div>
+
+      <div class="navbar-extra">
+        <a href="#" id="search-button"><i data-feather="search"></i></a>
+        <a href="#" id="shopping-cart-button"
+          ><i data-feather="shopping-cart"></i>
+          <span class="quantity-notifikasi" x-show="$store.cart.quantity" x-text="$store.cart.quantity"></span>
+        </a>
+        <a href="#" id="hambureger-menu"><i data-feather="menu"></i></a>
+      </div>
+
+      <!-- ?Searching form  -->
+      <div class="search-form">
+        <input
+          type="search"
+          name="search"
+          id="search-box"
+          placeholder="Search kopi"
+        />
+        <label for="search-box"><i data-feather="search"></i></label>
+      </div>
+      <!-- ?Searching  -->
+
+      <!-- Shopping Cart -->
+      <div class="shopping-cart">
+
+        <!-- bungkus dengan template bawaan alpinejs -->
+        <template x-for="(item, index) in $store.cart.items" x-keys="index">
+          <div class="cart-item" >
+            <img :src="`images/biji-kopi/${item.img}`" :alt="`item.name`" />
+            <div class="item-detail">
+              <h3 x-text="item.name"></h3>
+              <div class="item-price">
+                <span x-text="rupiah(item.price)"></span> &times;
+                <button @click="$store.cart.remove(item.id)" id="remove">&minus;</button> 
+                <span x-text="item.quantity">1</span>
+                <button @click="$store.cart.add(item)" id="add">&plus;</button>&equals;
+                <span x-text="rupiah(item.total)"></span>
+              </div>
+            </div>
+          </div>
+        </template>
+
+        <!-- keranjang belanjaan kosong -->
+        <h4 x-show="!$store.cart.items.length" style="margin-top: 1rem;">Keranjang belanjaan masih kosong</h4>
+        <h4 x-show="$store.cart.items.length"> Total belanjaan kamu : <span x-text="rupiah($store.cart.total)"></span></h4>
+
+        <!-- form container -->
+        <div class="form-container" x-show="$store.cart.items.length">
+          <form action="" id="checkoutForm">
+            <!-- untuk kirim cart hiden -->
+            <input type="hidden" name="items" x-model="JSON.stringify($store.cart.items)"> 
+            <input type="hidden" name="total" x-model="$store.cart.total">
+             <!-- untuk kirim cart hiden -->
+            <h5>Data Costumer</h5>
+            <label for="name">
+              <span>Name</span>
+              <input type="text" name="name" id="name">
+            </label>
+
+            <label for="email">
+              <span>Email</span>
+              <input type="email" name="email" id="email">
+            </label>
+
+            <label for="phone">
+              <span>Phone</span>
+              <input type="number" name="phone" id="phone" autocomplete="off">
+            </label>
+
+            <button class="checkout-button disabled" type="submit"  id="checkout-button" value="checkout">Chekout</button>
+          </form>
+        </div>
+
+    </div>
+      <!-- Shopping Cart End -->
+    </nav>
+    <!-- Navbar end -->
+
+    <!-- !Herro Section -->
+    <!-- <section class="hero" id="home">
+      <main class="content">
+        <h1>Mari Nikmati Secangkir <span>Kopi</span></h1>
+        <p>
+          Kopi Mu is one of the fastest growing grab-and-go coffee chain in
+          Indonesia.
+        </p>
+        <a href="#" class="cta">Beli Sekarang</a>
+      </main>
+    </section> -->
+    <!-- !Herro Section End -->
+
+    <!-- !Tentang KAMI -->
+    <!-- <section id="about" class="about">
+      <h2><span>Tentang</span> Kami</h2>
+      <div class="row">
+        <div class="about-img">
+          <img src="images/bg/Tentang.jpg" alt="" />
+        </div>
+        <div class="content">
+          <h3>Kenapa Kopi Mu Terbaik untuk Kamu?</h3>
+          <p>
+            Biji kopi ini termasuk dalam jenis kopi Arabika, sekaligus menjadi
+            kopi arabika terbaik di dunia. Memiliki cita rasa keasaman pada
+            buahnya yang memikat. Uniknya adalah kopi Tanzania Peaberry juga
+            sering mengeluarkan sedikit kismis berwarna hitam yang kemudian
+            melunak menjadi cokelat, dan menyatu yang membuat after taste dari
+            kopi ini menjadi sedikit manis.
+          </p>
+        </div>
+      </div>
+    </section> -->
+    <!-- !Tentang KAMI end -->
+
+    <!--! Menu Section Start -->
+    <!-- <section id="menu" class="menu">
+      <h2><span>Menu</span> Kopi Mu</h2>
+      <p>
+        Espresso, Americano, Cappucino, Caffe Latte, Macchiato, Affogato,
+        Ristretto, Frappe, Cold Bre, Cortado, Flat White.
+      </p>
+
+      <div class="row">
+        <div class="menu-card">
+          <img src="images/menu-kopi/14.jpg" alt="Espreso" />
+          <h3 class="menu-card-title">Espreso -</h3>
+          <p class="menu-card-price">Rp.20.000</p>
+        </div>
+        <div class="menu-card">
+          <img src="images/menu-kopi/1.jpg" alt="Espreso" />
+          <h3 class="menu-card-title">Americano, -</h3>
+          <p class="menu-card-price">Rp.15.000</p>
+        </div>
+        <div class="menu-card">
+          <img src="images/menu-kopi/3.jpg" alt="Espreso" />
+          <h3 class="menu-card-title">Cappucino, -</h3>
+          <p class="menu-card-price">Rp.25.000</p>
+        </div>
+        <div class="menu-card">
+          <img src="images/menu-kopi/4.jpg" alt="Espreso" />
+          <h3 class="menu-card-title">Caffe Latte -</h3>
+          <p class="menu-card-price">Rp.24.000</p>
+        </div>
+        <div class="menu-card">
+          <img src="images/menu-kopi/5.jpg" alt="Espreso" />
+          <h3 class="menu-card-title">Macchiato -</h3>
+          <p class="menu-card-price">Rp.28.000</p>
+        </div>
+        <div class="menu-card">
+          <img src="images/menu-kopi/11.jpg" alt="Espreso" />
+          <h3 class="menu-card-title">Affogato -</h3>
+          <p class="menu-card-price">Rp.28.000</p>
+        </div>
+        <div class="menu-card">
+          <img src="images/menu-kopi/7.jpg" alt="Espreso" />
+          <h3 class="menu-card-title">Ristretto -</h3>
+          <p class="menu-card-price">Rp.30.000</p>
+        </div>
+        <div class="menu-card">
+          <img src="images/menu-kopi/8.jpg" alt="Espreso" />
+          <h3 class="menu-card-title">Frappe -</h3>
+          <p class="menu-card-price">Rp.30.000</p>
+        </div>
+        <div class="menu-card">
+          <img src="images/menu-kopi/9.jpg" alt="Espreso" />
+          <h3 class="menu-card-title">Bre -</h3>
+          <p class="menu-card-price">Rp.35.000</p>
+        </div>
+        <div class="menu-card">
+          <img src="images/menu-kopi/10.jpg" alt="Espreso" />
+          <h3 class="menu-card-title">Cortado -</h3>
+          <p class="menu-card-price">Rp.23.000</p>
+        </div>
+        <div class="menu-card">
+          <img src="images/menu-kopi/6.jpg" alt="Espreso" />
+          <h3 class="menu-card-title">Flat White -</h3>
+          <p class="menu-card-price">Rp.19.000</p>
+        </div>
+      </div>
+    </section> -->
+    <!--! Menu Section Start -->
+
+    <!-- Product Kami -->
+    <section class="products" id="products" x-data="products">
+      <h2><span>Produk Terbaik </span> Kami</h2>
+      <p>
+        Batteccreek Coffee, Fiddle Heads, Guatemala Coffee, Paradise Montaine, Small Batch Coffee, Go Africa Coffee, Cultuvate Coffee,  Coffee KING, Espreso Coffee.
+      </p>
+      <div class="row">
+        <template x-for="(item, index) in items" x-key="index">
+          <div class="product-card">
+            <div class="product-icons">
+              <a href="#" x-on:click.prevent="$store.cart.add(item)">
+                <svg
+                    width="24"
+                    height="24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <use href="images/feather-icons/feather-sprite.svg#shopping-cart" />
+                  </svg>
+              </a>
+              <a href="#">
+                <svg
+                width="24"
+                height="24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <use href="images/feather-icons/feather-sprite.svg#eye" />
+              </svg>  
+              </a>
+            </div>
+            <div class="product-image">
+              <img :src="`images/biji-kopi/${item.img}`" :alt="`item.name`" />
+            </div>
+            <div class="product-content">
+              <h3 x-text="item.name"></h3>
+              <div class="product-stars">
+                  <svg
+                      width="24"
+                      height="24"
+                      fill="currentColor"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <use href="images/feather-icons/feather-sprite.svg#star" />
+                    </svg>
+
+                    <svg
+                    width="24"
+                    height="24"
+                    fill="currentColor"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <use href="images/feather-icons/feather-sprite.svg#star" />
+                  </svg>
+                  <svg
+                  width="24"
+                  height="24"
+                  fill="currentColor"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <use href="images/feather-icons/feather-sprite.svg#star" />
+                </svg>
+                <svg
+                width="24"
+                height="24"
+                fill="currentColor"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <use href="images/feather-icons/feather-sprite.svg#star" />
+              </svg>
+              <svg
+              width="24"
+              height="24"
+              fill="currentColor"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <use href="images/feather-icons/feather-sprite.svg#star" />
+            </svg>
+
+
+              </div>
+              <div class="product-price"><span x-text="rupiah(item.price)"></span></div>
+            </div>
+          </div>
+        </template>
+        
+
+      </div>
+    </section>
+    <!-- Product Kami End-->
+
+    <!-- Section Contact Kami -->
+    <section id="contact" class="contact">
+      <h2><span>Kontak</span> Kami</h2>
+      <p>
+        Untuk informasi lebih yang lanjut tentang <span>Kopi Setia</span> tolong
+        isi formulir di bawah ini.
+      </p>
+      <div class="row">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15862.823952566698!2d106.767935712569!3d-6.302308270882022!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69ed2e253fc849%3A0xf9c09ac1513d11af!2sKopi%20Kenangan%20-%20Ruko%20Lebak%20Bulus!5e0!3m2!1sid!2sid!4v1702648017228!5m2!1sid!2sid"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          class="map"
+        >
+        </iframe>
+
+        <form action="">
+          <div class="input-grup">
+            <i data-feather="user"></i>
+            <input type="text" placeholder="nama" />
+          </div>
+          <div class="input-grup">
+            <i data-feather="mail"></i>
+            <input type="text" placeholder="email" />
+          </div>
+          <div class="input-grup">
+            <i data-feather="phone-call"></i>
+            <input type="text" placeholder="no hp" />
+          </div>
+          <button type="submit" class="btn">Kirim Pesan</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Section Contact Kami -->
+    <footer>
+      <div class="socials">
+        <a href="#"><i data-feather="instagram"></i></a>
+        <a href="#"><i data-feather="facebook"></i></a>
+      </div>
+
+      <div class="links">
+        <a href="#home">Home</a>
+        <a href="#about">Tentang Kami</a>
+        <a href="#menu">Menu</a>
+        <a href="#contact">Kontak</a>
+      </div>
+
+      <div class="credit">
+        <p>Created by<a href=""> AlwinDev</a> &copy; 2023</p>
+      </div>
+    </footer>
+
+    <!-- Modal Box Detail start -->
+    <div class="modal" id="item-detail-modal-1">
+      <div class="modal-container">
+        <a href="#" class="close-icon"><i data-feather="x"></i></a>
+        <div class="model-content">
+          <img src="images/biji-kopi/1.jpg" alt="produk1" />
+          <div class="product-content">
+            <h3>Batteccreek Coffee</h3>
+            <p>
+              Apakah Anda sedang menikmati secangkir kopi pertama di pagi hari
+              untuk mengatur suasana hari itu atau perlu menenangkan diri dan
+              menjalani sore hari, kami ingin Anda menikmati kopi yang
+              mengekstraksi nuansa premium dari biji kopi.
+            </p>
+            <div class="product-stars">
+              <i class="star-full" data-feather="star"></i>
+              <i class="star-full" data-feather="star"></i>
+              <i class="star-full" data-feather="star"></i>
+              <i class="star-full" data-feather="star"></i>
+              <i class="star-full" data-feather="star"></i>
+            </div>
+            <div class="prduct-price">IDR 30K <span>IDR 55K</span></div>
+            <a href="#"
+              ><i data-feather="shopping-cart"></i
+              ><span>Tambah ke kranjang</span></a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal Box Detail End -->
+
+    <!-- Modal 2 -->
+    <div class="modal" id="item-detail-modal-2">
+      <div class="modal-container">
+        <a href="#" class="close-icon"><i data-feather="x"></i></a>
+        <div class="model-content">
+          <img src="images/biji-kopi/2.jpg" alt="produk1" />
+          <div class="product-content">
+            <h3>Fiddle Heads</h3>
+            <p>
+              Apakah Anda sedang menikmati secangkir kopi pertama di pagi hari
+              untuk mengatur suasana hari itu atau perlu menenangkan diri dan
+              menjalani sore hari, kami ingin Anda menikmati kopi yang
+              mengekstraksi nuansa premium dari biji kopi.
+            </p>
+            <div class="product-stars">
+              <i class="star-full" data-feather="star"></i>
+              <i class="star-full" data-feather="star"></i>
+              <i class="star-full" data-feather="star"></i>
+              <i class="star-full" data-feather="star"></i>
+              <i class="star-full" data-feather="star"></i>
+            </div>
+            <div class="prduct-price">IDR 30K <span>IDR 55K</span></div>
+            <a href="#"
+              ><i data-feather="shopping-cart"></i
+              ><span>Tambah ke kranjang</span></a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal 2 end -->
+
+    <!-- Modal 3 -->
+    <div class="modal" id="item-detail-modal-3">
+      <div class="modal-container">
+        <a href="#" class="close-icon"><i data-feather="x"></i></a>
+        <div class="model-content">
+          <img src="images/biji-kopi/3.jpg" alt="produk1" />
+          <div class="product-content">
+            <h3>Guatemala Coffee</h3>
+            <p>
+              Apakah Anda sedang menikmati secangkir kopi pertama di pagi hari
+              untuk mengatur suasana hari itu atau perlu menenangkan diri dan
+              menjalani sore hari, kami ingin Anda menikmati kopi yang
+              mengekstraksi nuansa premium dari biji kopi.
+            </p>
+            <div class="product-stars">
+              <i class="star-full" data-feather="star"></i>
+              <i class="star-full" data-feather="star"></i>
+              <i class="star-full" data-feather="star"></i>
+              <i class="star-full" data-feather="star"></i>
+              <i class="star-full" data-feather="star"></i>
+            </div>
+            <div class="prduct-price">IDR 30K <span>IDR 55K</span></div>
+            <a href="#"
+              ><i data-feather="shopping-cart"></i
+              ><span>Tambah ke kranjang</span></a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal 2 end -->
+
+    <!-- Modal 4 -->
+    <div class="modal" id="item-detail-modal-4">
+      <div class="modal-container">
+        <a href="#" class="close-icon"><i data-feather="x"></i></a>
+        <div class="model-content">
+          <img src="images/biji-kopi/4.jpg" alt="produk1" />
+          <div class="product-content">
+            <h3>Paradise Montaine</h3>
+            <p>
+              Apakah Anda sedang menikmati secangkir kopi pertama di pagi hari
+              untuk mengatur suasana hari itu atau perlu menenangkan diri dan
+              menjalani sore hari, kami ingin Anda menikmati kopi yang
+              mengekstraksi nuansa premium dari biji kopi.
+            </p>
+            <div class="product-stars">
+              <i class="star-full" data-feather="star"></i>
+              <i class="star-full" data-feather="star"></i>
+              <i class="star-full" data-feather="star"></i>
+              <i class="star-full" data-feather="star"></i>
+              <i class="star-full" data-feather="star"></i>
+            </div>
+            <div class="prduct-price">IDR 30K <span>IDR 55K</span></div>
+            <a href="#"
+              ><i data-feather="shopping-cart"></i
+              ><span>Tambah ke kranjang</span></a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal 4 end -->
+
+    <!-- Modal 5 -->
+    <div class="modal" id="item-detail-modal-5">
+      <div class="modal-container">
+        <a href="#" class="close-icon"><i data-feather="x"></i></a>
+        <div class="model-content">
+          <img src="images/biji-kopi/5.jpg" alt="produk1" />
+          <div class="product-content">
+            <h3>Small Batch Coffee</h3>
+            <p>
+              Apakah Anda sedang menikmati secangkir kopi pertama di pagi hari
+              untuk mengatur suasana hari itu atau perlu menenangkan diri dan
+              menjalani sore hari, kami ingin Anda menikmati kopi yang
+              mengekstraksi nuansa premium dari biji kopi.
+            </p>
+            <div class="product-stars">
+              <i class="star-full" data-feather="star"></i>
+              <i class="star-full" data-feather="star"></i>
+              <i class="star-full" data-feather="star"></i>
+              <i class="star-full" data-feather="star"></i>
+              <i class="star-full" data-feather="star"></i>
+            </div>
+            <div class="prduct-price">IDR 90K <span>IDR 110K</span></div>
+            <a href="#"
+              ><i data-feather="shopping-cart"></i
+              ><span>Tambah ke kranjang</span></a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal 5 end -->
+
+    <!-- Modal 6 -->
+    <div class="modal" id="item-detail-modal-6">
+      <div class="modal-container">
+        <a href="#" class="close-icon"><i data-feather="x"></i></a>
+        <div class="model-content">
+          <img src="images/biji-kopi/6.jpg" alt="produk1" />
+          <div class="product-content">
+            <h3>Go Africa Coffee</h3>
+            <p>
+              Apakah Anda sedang menikmati secangkir kopi pertama di pagi hari
+              untuk mengatur suasana hari itu atau perlu menenangkan diri dan
+              menjalani sore hari, kami ingin Anda menikmati kopi yang
+              mengekstraksi nuansa premium dari biji kopi.
+            </p>
+            <div class="product-stars">
+              <i class="star-full" data-feather="star"></i>
+              <i class="star-full" data-feather="star"></i>
+              <i class="star-full" data-feather="star"></i>
+              <i class="star-full" data-feather="star"></i>
+              <i class="star-full" data-feather="star"></i>
+            </div>
+            <div class="prduct-price">IDR 90K <span>IDR 110K</span></div>
+            <a href="#"
+              ><i data-feather="shopping-cart"></i
+              ><span>Tambah ke kranjang</span></a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal 6 end -->
+
+    <!-- Modal 7 -->
+    <div class="modal" id="item-detail-modal-7">
+      <div class="modal-container">
+        <a href="#" class="close-icon"><i data-feather="x"></i></a>
+        <div class="model-content">
+          <img src="images/biji-kopi/7.jpg" alt="produk1" />
+          <div class="product-content">
+            <h3>Cultuvate Coffee</h3>
+            <p>
+              Apakah Anda sedang menikmati secangkir kopi pertama di pagi hari
+              untuk mengatur suasana hari itu atau perlu menenangkan diri dan
+              menjalani sore hari, kami ingin Anda menikmati kopi yang
+              mengekstraksi nuansa premium dari biji kopi.
+            </p>
+            <div class="product-stars">
+              <i class="star-full" data-feather="star"></i>
+              <i class="star-full" data-feather="star"></i>
+              <i class="star-full" data-feather="star"></i>
+              <i class="star-full" data-feather="star"></i>
+              <i class="star-full" data-feather="star"></i>
+            </div>
+            <div class="prduct-price">IDR 68K <span>IDR 100K</span></div>
+            <a href="#"
+              ><i data-feather="shopping-cart"></i
+              ><span>Tambah ke kranjang</span></a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal 7 end -->
+
+    <!-- Modal 8 -->
+    <div class="modal" id="item-detail-modal-8">
+      <div class="modal-container">
+        <a href="#" class="close-icon"><i data-feather="x"></i></a>
+        <div class="model-content">
+          <img src="images/biji-kopi/8.jpg" alt="produk1" />
+          <div class="product-content">
+            <h3>Coffee KING</h3>
+            <p>
+              Apakah Anda sedang menikmati secangkir kopi pertama di pagi hari
+              untuk mengatur suasana hari itu atau perlu menenangkan diri dan
+              menjalani sore hari, kami ingin Anda menikmati kopi yang
+              mengekstraksi nuansa premium dari biji kopi.
+            </p>
+            <div class="product-stars">
+              <i class="star-full" data-feather="star"></i>
+              <i class="star-full" data-feather="star"></i>
+              <i class="star-full" data-feather="star"></i>
+              <i class="star-full" data-feather="star"></i>
+              <i class="star-full" data-feather="star"></i>
+            </div>
+            <div class="prduct-price">IDR 68K <span>IDR 100K</span></div>
+            <a href="#"
+              ><i data-feather="shopping-cart"></i
+              ><span>Tambah ke kranjang</span></a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal 8 end -->
+
+    <!-- Modal 8 -->
+    <div class="modal" id="item-detail-modal-9">
+      <div class="modal-container">
+        <a href="#" class="close-icon"><i data-feather="x"></i></a>
+        <div class="model-content">
+          <img src="images/biji-kopi/9.jpg" alt="produk1" />
+          <div class="product-content">
+            <h3>Espreso Coffee</h3>
+            <p>
+              Apakah Anda sedang menikmati secangkir kopi pertama di pagi hari
+              untuk mengatur suasana hari itu atau perlu menenangkan diri dan
+              menjalani sore hari, kami ingin Anda menikmati kopi yang
+              mengekstraksi nuansa premium dari biji kopi.
+            </p>
+            <div class="product-stars">
+              <i class="star-full" data-feather="star"></i>
+              <i class="star-full" data-feather="star"></i>
+              <i class="star-full" data-feather="star"></i>
+              <i class="star-full" data-feather="star"></i>
+              <i class="star-full" data-feather="star"></i>
+            </div>
+            <div class="prduct-price">IDR 68K <span>IDR 100K</span></div>
+            <a href="#"
+              ><i data-feather="shopping-cart"></i
+              ><span>Tambah ke kranjang</span></a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal 8 end -->
+
+    <!-- feather icons -->
+    <script>
+      feather.replace();
+    </script>
+    <!-- My JavaScript -->
+    <script src="js/main.js"></script>
+     <!-- App -->
+     <script src="src/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+https://fonts.google.com/specimen/Poppins?query=po
+https://www.wallpaperflare.com/search?wallpaper=black+coffee
+
+
+https://feathericons.com/
+https://github.com/feathericons/feather#feather
+
+logo kopi :
+https://www.cleanpng.com/png-cafe-coffee-clip-art-restaurant-logo-coffee-shop-l-7258012/
+
+https://openai.com/dall-e-2 ini open ai
+
+
+Number format :
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat
+const rupiah = (number) => {
+    return new Intl.NumberFormat('id-ID', {
+        style : 'currency',
+        currency: 'IDR',
+        minimumFractionDigits : 0, //untuk menghilangkan nol dibelakang ya 
+    }).format(number);
+}
+
+Mengghungkan data kita ke kerangjang :
+https://alpinejs.dev/globals/alpine-store
+

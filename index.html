@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kopi Setia</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,700;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- father icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <!-- my style -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="shortcut icon"
+      href="images/logo/logo-warkop.png"
+      type="image/x-icon"
+    />
+    <!-- AlipineJS -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  </head>
+  <body>
+    <!-- Navbar star -->
+    <div class="navbar">
+      <div class="navbar-logo">
+        <!-- <img src="images/logo/3.png" alt="" /> -->
+        <a href="#"><span>Kopi Setia</span></a>
+      </div>
+
+      <div class="navbar-nav">
+        <a href="#">Home</a>
+        <a href="#about">Tentang Kami</a>
+        <a href="#menu">Menu Kopi</a>
+        <a href="produk.html">Produk</a>
+        <a href="#contact">Kontak</a>
+      </div>
+
+      <div class="navbar-extra">
+        <a href="#" id="search-button"><i data-feather="search"></i></a>
+        <a href="produk.html" id="shopping-cart"
+          ><i data-feather="shopping-cart"></i
+        ></a>
+        <a href="#" id="hambureger-menu"><i data-feather="menu"></i></a>
+      </div>
+
+      <!-- ?Searching  -->
+      <div class="search-form">
+        <input
+          type="search"
+          name="search"
+          id="search-box"
+          placeholder="Search kopi"
+        />
+        <label for="search-box"><i data-feather="search"></i></label>
+      </div>
+      <!-- ?Searching  -->
+    </div>
+    <!-- Navbar end -->
+
+    <!-- Herro Section -->
+    <section class="hero" id="home">
+      <div class="mask-container">
+        <main class="content">
+          <h1>Mari Nikmati Secangkir <span>Kopi</span></h1>
+          <p>
+            Kopi Setia adalah perusahaan yang bergerak di bidang minuman kopi
+            terbaik di Indonesia.
+          </p>
+          <!-- <a href="#" class="cta">Beli Sekarang</a>  -->
+          <!-- kita off kan karena menggunakan masking  -->
+        </main>
+      </div>
+    </section>
+    <!-- Herro Section End -->
+
+    <!-- Tentang KAMI -->
+    <section id="about" class="about">
+      <h2><span>Tentang</span> Kami</h2>
+      <div class="row">
+        <div class="about-img">
+          <img src="images/bg/kopi-mu.jpg" alt="" />
+        </div>
+        <div class="content">
+          <h3>Kenapa Kopi Setia Terbaik untuk Kamu?</h3>
+          <p>
+            Biji kopi ini termasuk dalam jenis kopi Arabika, sekaligus menjadi
+            kopi arabika terbaik di dunia. Memiliki cita rasa keasaman pada
+            buahnya yang memikat. Uniknya adalah kopi Tanzania Peaberry juga
+            sering mengeluarkan sedikit kismis berwarna hitam yang kemudian
+            melunak menjadi cokelat, dan menyatu yang membuat after taste dari
+            kopi ini menjadi sedikit manis.
+          </p>
+        </div>
+      </div>
+    </section>
+    <!-- Tentang KAMI end -->
+
+    <!-- Menu Section Start -->
+    <section id="menu" class="menu">
+      <h2><span>Menu</span> Kopi Setia</h2>
+      <p>
+        Espresso, Americano, Cappucino, Caffe Latte, Macchiato, Affogato,
+        Ristretto, Frappe, Cold Bre, Cortado, Flat White.
+      </p>
+
+      <div class="row">
+        <div class="menu-card">
+          <img src="images/menu-kopi/14.jpg" alt="Espreso" />
+          <h3 class="menu-card-title">Espreso -</h3>
+          <p class="menu-card-price">Rp.20.000</p>
+        </div>
+        <div class="menu-card">
+          <img src="images/menu-kopi/1.jpg" alt="Espreso" />
+          <h3 class="menu-card-title">Americano, -</h3>
+          <p class="menu-card-price">Rp.15.000</p>
+        </div>
+        <div class="menu-card">
+          <img src="images/menu-kopi/3.jpg" alt="Espreso" />
+          <h3 class="menu-card-title">Cappucino, -</h3>
+          <p class="menu-card-price">Rp.25.000</p>
+        </div>
+        <div class="menu-card">
+          <img src="images/menu-kopi/4.jpg" alt="Espreso" />
+          <h3 class="menu-card-title">Caffe Latte -</h3>
+          <p class="menu-card-price">Rp.24.000</p>
+        </div>
+        <div class="menu-card">
+          <img src="images/menu-kopi/5.jpg" alt="Espreso" />
+          <h3 class="menu-card-title">Macchiato -</h3>
+          <p class="menu-card-price">Rp.28.000</p>
+        </div>
+        <div class="menu-card">
+          <img src="images/menu-kopi/11.jpg" alt="Espreso" />
+          <h3 class="menu-card-title">Affogato -</h3>
+          <p class="menu-card-price">Rp.28.000</p>
+        </div>
+        <div class="menu-card">
+          <img src="images/menu-kopi/7.jpg" alt="Espreso" />
+          <h3 class="menu-card-title">Ristretto -</h3>
+          <p class="menu-card-price">Rp.30.000</p>
+        </div>
+        <div class="menu-card">
+          <img src="images/menu-kopi/8.jpg" alt="Espreso" />
+          <h3 class="menu-card-title">Frappe -</h3>
+          <p class="menu-card-price">Rp.30.000</p>
+        </div>
+        <div class="menu-card">
+          <img src="images/menu-kopi/9.jpg" alt="Espreso" />
+          <h3 class="menu-card-title">Bre -</h3>
+          <p class="menu-card-price">Rp.35.000</p>
+        </div>
+        <div class="menu-card">
+          <img src="images/menu-kopi/10.jpg" alt="Espreso" />
+          <h3 class="menu-card-title">Cortado -</h3>
+          <p class="menu-card-price">Rp.23.000</p>
+        </div>
+        <div class="menu-card">
+          <img src="images/menu-kopi/6.jpg" alt="Espreso" />
+          <h3 class="menu-card-title">Flat White -</h3>
+          <p class="menu-card-price">Rp.19.000</p>
+        </div>
+      </div>
+    </section>
+    <!-- Menu Section Start -->
+
+    <!-- Section Contact Kami -->
+    <section id="contact" class="contact">
+      <h2><span>Kontak</span> Kami</h2>
+      <p>
+        Untuk informasi lebih yang lanjut tentang
+        <span>Kopi Setia</span> silakan isi formulir di bawah ini.
+      </p>
+      <div class="row">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15862.823952566698!2d106.767935712569!3d-6.302308270882022!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69ed2e253fc849%3A0xf9c09ac1513d11af!2sKopi%20Kenangan%20-%20Ruko%20Lebak%20Bulus!5e0!3m2!1sid!2sid!4v1702648017228!5m2!1sid!2sid"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          class="map"
+        >
+        </iframe>
+
+        <form action="">
+          <div class="input-grup">
+            <i data-feather="user"></i>
+            <input type="text" placeholder="nama" />
+          </div>
+          <div class="input-grup">
+            <i data-feather="mail"></i>
+            <input type="text" placeholder="email" />
+          </div>
+          <div class="input-grup">
+            <i data-feather="phone-call"></i>
+            <input type="text" placeholder="no hp" />
+          </div>
+          <button type="submit" class="btn">Kirim Pesan</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Section Contact Kami -->
+    <footer>
+      <div class="socials">
+        <a href="#"><i data-feather="instagram"></i></a>
+        <a href="#"><i data-feather="facebook"></i></a>
+      </div>
+
+      <div class="links">
+        <a href="#home">Home</a>
+        <a href="#about">Tentang Kami</a>
+        <a href="#menu">Menu</a>
+        <a href="#contact">Kontak</a>
+      </div>
+
+      <div class="credit">
+        <p>Created by<a href=""> AlwinDev</a> &copy; 2023</p>
+      </div>
+    </footer>
+
+    <!-- feather icons -->
+    <script>
+      feather.replace();
+    </script>
+    <!-- My JavaScript -->
+    <script src="js/main.js"></script>
+  </body>
+</html>
